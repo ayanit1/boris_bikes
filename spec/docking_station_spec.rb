@@ -10,4 +10,18 @@ describe DockingStation do
   it 'expects bike to be working' do
     expect(subject.release_bike.working?).to be true
   end
+
+  it 'docks a bike' do
+    expect(subject).to respond_to(:dock).with(1).argument
+  end
+
+  it 'contain a bike' do
+    expect(subject).to respond_to(:bike)
+  end
+
+  it 'returns docked bike' do
+    bike = Bike.new
+    subject.dock(bike)
+    expect(subject.bike).to eq bike
+  end
 end

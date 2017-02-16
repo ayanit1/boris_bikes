@@ -1,33 +1,42 @@
 require 'docking_station'
 
 describe DockingStation do
- let(:dockingstation) {described_class.new}
- it {is_expected.to respond_to(:release_bike)}
+  it { is_expected.to respond_to :release_bike }
+    # expect(subject).to respond_to :release_bike
+  # end
 
- it 'checks if bike is working' do
-   expect(dockingstation.release_bike.working?).to eq true
- end
+  # it 'gets a bike' do
+  #   subject.dock(Bike.new)
+  #   expect(subject.release_bike).to be_a Bike
+  # end
 
- it 'releases a bike' do
-   expect(dockingstation.release_bike).to be_a Bike
- end
+  # it 'checks if bike is working' do
+  #   expect(dockingstation.release_bike.working?).to eq true
+  # end
 
- it {is_expected.to respond_to(:dock).with(1).argument}
+  it 'releases a bike' do
+    subject.dock(Bike.new)
+    expect(subject.release_bike).to be_a Bike
+  end
 
- it 'Checks if a bike is returned' do
-   # outside_bike = Bike.new
-   bike = dockingstation.release_bike
-   expect(dockingstation.dock(bike)).to eq bike
- end
+  it {is_expected.to respond_to(:dock).with(1).argument}
 
- it 'wont release a bike if there are none avaliable' do
-   #I expect it to raise an error if there are no bikes avaliable
-   dockingstation.release_bike
-   expect{dockingstation.release_bike}.to raise_error("No bikes are avaliable")
- end
+  it 'Checks if a bike is returned' do
+    bike = Bike.new
+    expect(subject.dock(bike)).to eq [bike]
+  end
 
- it 'wont dock the bike if the dock is full' do
-   bike = Bike.new
-   expect{dockingstation.dock(bike)}.to raise_error("The dock is full")
- end
+  it 'wont release a bike if there are none avaliable' do
+    expect{ subject.release_bike }.to raise_error("No bikes are avaliable")
+  end
+
+  # it 'wont dock the bike if the dock is full' do
+  #   bike = Bike.new
+  #   expect{dockingstation.dock(bike)}.to raise_error("The dock is full")
+  # end
+
+  it 'intializes with capacity of 20 bikes' do
+    expect(subject.capacity).to eq 20
+  end
+
 end

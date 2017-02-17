@@ -5,14 +5,15 @@ describe DockingStation do
     # expect(subject).to respond_to :release_bike
   # end
 
-  # it 'gets a bike' do
-  #   subject.dock(Bike.new)
-  #   expect(subject.release_bike).to be_a Bike
-  # end
+  it 'gets a bike' do
+    subject.dock(Bike.new)
+    expect(subject.release_bike).to be_a Bike
+  end
 
-  # it 'checks if bike is working' do
-  #   expect(dockingstation.release_bike.working?).to eq true
-  # end
+  it 'checks if bike is working' do
+    bike = Bike.new
+    expect(bike).to be_working
+  end
 
   it 'releases a bike' do
     subject.dock(Bike.new)
@@ -30,10 +31,9 @@ describe DockingStation do
     expect{ subject.release_bike }.to raise_error("No bikes are avaliable")
   end
 
-  # it 'wont dock the bike if the dock is full' do
-  #   bike = Bike.new
-  #   expect{dockingstation.dock(bike)}.to raise_error("The dock is full")
-  # end
+  it 'wont dock the bike if the dock is full' do
+    expect{21.times{subject.dock(Bike.new)}}.to raise_error("The dock is full")
+  end
 
   it 'intializes with capacity of 20 bikes' do
     expect(subject.capacity).to eq 20

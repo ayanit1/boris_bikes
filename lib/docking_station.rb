@@ -1,7 +1,7 @@
 require_relative 'bike'
 
 class DockingStation
-  attr_reader :capacity
+  attr_reader :capacity, :bikes
 
   def initialize
     @capacity = 20
@@ -19,6 +19,7 @@ class DockingStation
       raise "The dock is full"
     else
       @bikes << bike
+      @bikes[-1]
     end
   end
 end

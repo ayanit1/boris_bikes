@@ -36,7 +36,11 @@ describe DockingStation do
   end
 
   it 'intializes with capacity of 20 bikes' do
-    expect(DockingStation::DEFAULT_CAPACITY).to eq 20
+    expect(subject.capacity).to eq 20
   end
 
+  it 'allows user to set capacity' do
+    station = DockingStation.new(5)
+    expect(station.capacity).to eq 5
+  end
 end

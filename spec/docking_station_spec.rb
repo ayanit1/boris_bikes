@@ -39,12 +39,4 @@ describe DockingStation do
     expect(subject.capacity).to eq 20
   end
 
-<<<<<<< HEAD
-=======
-  it 'raises error if more than one bike is taken before docked' do
-    subject.release_bike
-    expect{subject.release_bike}.to raise_error "error"
-  end
-
->>>>>>> e21da7472f7f5738bb8ffbcfd6a4d5a53b8d0696
 end
